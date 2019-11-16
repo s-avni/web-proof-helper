@@ -23,7 +23,7 @@ def send_js(path):
 
 @app.route("/validate", methods=['GET', 'POST'])
 def api_info():
-    txt = request.form['txt']
+    txt = request.form['txt'].replace("\left", "").replace("\\right", "")
     print(txt)
     is_ok = validate_new_line(txt)
     if is_ok == True:
