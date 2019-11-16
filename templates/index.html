@@ -16,9 +16,34 @@ dimensionless combination or your desired dimension.">
     <link href="../static/sticky-footer.css" rel="stylesheet">
 
     <style>
-    li{
-      margin: 10px 0;
-    }
+        li {
+            margin: 10px 0;
+        }
+
+        #math_table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #math_table td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #math_table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #math_table tr:hover {
+            background-color: #ddd;
+        }
+
+        #math_table th {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -38,11 +63,11 @@ dimensionless combination or your desired dimension.">
         <br/>
         <h5>Input examples, press "enter" for each row simiplification: </h5>
         <h6>
-        <ol>
-          <li>x^2 - 4 <br/>(x+2)(x-2)</li>
-          <li>x^2+3x+2=12<br/> (x+1)(x+2)=12</li>
-          <li>x*y+z-12=2z<br/>x*y-12=z</li>
-        </ol>
+            <ol>
+                <li>x^2 - 4 <br/>(x+2)(x-2)</li>
+                <li>x^2+3x+2=12<br/> (x+1)(x+2)=12</li>
+                <li>x*y+z-12=2z<br/>x*y-12=z</li>
+            </ol>
         </h6>
     </div>
 </div>
@@ -56,7 +81,23 @@ dimensionless combination or your desired dimension.">
             <p id="check_1"></p>
         </div>
         <div class="col col-md-8">
-        <textarea style="height:100%; min-width: 100%" id="math-text" rows="20">4*x^2-4 &#13;&#10;x^2-1</textarea>
+            <!--        <textarea style="height:100%; min-width: 100%" id="math-text" rows="20">4*x^2-4 &#13;&#10;x^2-1</textarea>-->
+            <table id="math_table" style="width:100%">
+                <colgroup>
+                    <col span="1" style="width: 80%;">
+                    <col span="1" style="width: 20%;">
+                </colgroup>
+                <thead>
+                <th>Expression</th>
+                <th>Validity</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td contenteditable="true"></td>
+                    <td style="background-color: #aaa"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -70,42 +111,51 @@ dimensionless combination or your desired dimension.">
     $(document).ready(function () {
         $('textarea').bind("enterKey", function (e) {
             const lines = $('#math-text').val().split("\n");
-            const lines2 = lines.filter(function(entry) { return entry.trim() != ''; });
+            const lines2 = lines.filter(function (entry) {
+                return entry.trim() != '';
+            });
             console.log(lines2);
             const desired_lines = lines2.slice(-2);
             const txt = desired_lines.join('\n');
             console.log(txt);
             $.ajax({
-                url: '/validate',
-                type: 'post', //the method to use. GET or POST
-                dataType: 'json',
-                data: {txt: txt}, //your data: {key1:value1, key2:value2}
-                success: function (data) { //handle a successfull response (200 OK)
-                    console.log(data.result);
-                    if (data.result == "A-OK") {
-                        $('#check_1').text('OK!');
-                        console.log();
-                    } else {
-                        $('#check_1').text('Mistake!');
+                    url: '/validate',
+                    type: 'post', //the method to use. GET or POST
+                    dataType: 'json',
+                    data: {txt: txt}, //your data: {key1:value1, key2:value2}
+                    success: function (data) { //handle a successfull response (200 OK)
+                        console.log(data.result);
+                        if (data.result == "A-OK") {
+                            $('#check_1').text('OK!');
+                            console.log();
+                        } else {
+                            $('#check_1').text('Mistake!');
+                        }
+                        const val = $('#check_1').val();
+                        console.log(val);
+                        console.log("hey")
+
+                        //here you can do with your data whatever you want
+                    },
+                    error: function (jqXHR, textStauts, errorThrown) { //handle every error. e.g. 500
+                        console.log(textStatus + ': ' + errorThrown);
                     }
-                    const val = $('#check_1').val();
-                    console.log(val);
-                    console.log("hey")
-
-                    //here you can do with your data whatever you want
-                },
-                error: function (jqXHR, textStauts, errorThrown) { //handle every error. e.g. 500
-                    console.log(textStatus + ': ' + errorThrown);
                 }
-            }
-        );
-    });
+            );
+        });
 
-    $('textarea').keyup(function (e) {
-        if (e.keyCode == 13) {
-            $(this).trigger("enterKey");
-        }
-    });
+        $('#math_table').keyup(function (e) {
+            if (e.keyCode == 13) {
+                $('#math_table tr:last').after('<tr>\n' +
+                    '                    <td contenteditable="true"></td>\n' +
+                    '                    <td style="background-color: #aaa"></td>\n' +
+                    '                </tr>');
+                $('#math_table tr:last').focus();
+                var count = $('#math_table').length;
+                console.log(count);
+                $(this).trigger("enterKey");
+            }
+        });
     })
     ;
 </script>
