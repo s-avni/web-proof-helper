@@ -4,19 +4,30 @@ $(document).ready(function () {
 
     $('#math_table').keyup(function (e) {
         if (e.keyCode == 13) {
-            const newRow = $(e.target).closest("tr").after('<tr>\n' +
-            '                    <td className="mathInput"><input type="text" /></td>\n' +
-            '                    <td style="background-color: #aaa"></td>\n' +
-            '                </tr>');
-            const newInput = $(e.target).closest("tr").next().find("input");
-            console.log({newRow, newInput, target: $(e.target)})
-            newInput.focus();
+            const currentInput = $(e.target);
+            if (!currentInput.val() || currentInput.val().trim() === "") {
+                return;
+            }
+            let nextInput = $(e.target).closest("tr").next().find(".mathInput>input");
+            if (!nextInput || nextInput.length === 0 || (!!nextInput.val() && !!nextInput.val().trim())) {
+                $(e.target).closest("tr").after('<tr>\n' +
+                '                    <td class="mathInput"><input type="text" /></td>\n' +
+                '                    <td class="status" style="background-color: #aaa"></td>\n' +
+                '                </tr>');
+                nextInput = $(e.target).closest("tr").next().find(".mathInput>input");
+            }
+            if (!nextInput) {
+                console.error("Couldn't add newRow");
+                return;
+            }
+            console.log({nextInput, target: $(e.target)})
+            nextInput.focus();
 
             const inputs = $('#math_table input');
             const lines = Array.from($('#math_table input')).map(el => el.value);
             const lines2 = lines.filter((entry) => entry.trim() != '');
             console.log({inputs, lines, lines2});
-            if (lines2.length < 1) {
+            if (lines2.length <= 1) {
                 return
             }
             const desired_lines = lines2.slice(-2);
