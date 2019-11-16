@@ -12,8 +12,9 @@ dimensionless combination or your desired dimension.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <link rel="stylesheet" href="/static/mathquill-0.10.1/mathquill.css" />
+    <script src="/static/mathquill-0.10.1/mathquill.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
 
 </head>
@@ -68,7 +69,8 @@ dimensionless combination or your desired dimension.">
                     <tbody>
                         <tr>
                             <td class="mathInput">
-                                <input type="text" />
+                                <span class="math-field"></span>
+                                <!-- <input type="text" /> -->
                             </td>
                             <td style="background-color: #aaa">
                                 <p class="status"></p>
