@@ -32,12 +32,5 @@ If the function is trigonometric or hyperbolic, the function _solve_real_trig is
 
 The underlying method _solve_as_poly solves the equation using polynomial techniques if it’s already a polynomial equation or, with a change of variables, can be made so.
 
-TO CHECK/CHANGE:
-
-1. sol for: x= sqrt(-1)*sqrt(-1) //over reals, i expect we wouldn't get a sol. but maybe we do?
-(b/c in the end x=1? perhaps need to add condintion on real for x)
-
-2. 2x and 3x are shown to be equal, because both have 0 as a solution --> change to 2x-3x==0 //but then won't allow cancelation...
-
 
 

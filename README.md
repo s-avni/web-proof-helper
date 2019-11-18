@@ -22,6 +22,19 @@ Run the project using `flask run`.
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+## Todo
+
+1. Change default from complex to reals
+2. Change imaginary number from "I" to "i" #perhaps add a 'j' option as well
+3. Make parser work with sin(x)/x=1, and then check if x=0 is a solution or not
+4. sol for: x= sqrt(-1)*sqrt(-1) //over reals, i expect we wouldn't get a sol. but maybe we do?
+5. enable custom error messages to help user. e.g. "your first line has a larger value than your second line".
+6. when toggling "real/complex", re-solve equations and provide new correctness feedback
+7. finish real/complex toggle:
+
+const is_over_reals = $('#domain-toggle').is(":checked");
+console.log({is_over_reals});
+
 
 
 

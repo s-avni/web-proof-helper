@@ -3,21 +3,21 @@ $(document).ready(function () {
     let allMathFields = [];
 
     const updateMathFields = () => {
-        const mathFields = []
+        const mathFields = [];
         const mathFieldSpans = $('.math-field');
-        console.log({mathFieldSpans})
+        console.log({mathFieldSpans});
         // const latexSpan = document.getElementById('latex');
 
         for (let i = 0; i < mathFieldSpans.length; i += 1) {
-            const mathFieldSpan = mathFieldSpans[i]
-            console.log({mathFieldSpan})
+            const mathFieldSpan = mathFieldSpans[i];
+            console.log({mathFieldSpan});
             const mathField = MQ.MathField(mathFieldSpan, {
               spaceBehavesLikeTab: true, // configurable
               handlers: {
                 enter: () => {
                     const currentField = mathFields[i];
-                    const currentValue = currentField.latex()
-                    console.log({currentValue})
+                    const currentValue = currentField.latex();
+                    console.log({currentValue});
                     if (currentValue.trim() === "") {
                         return;
                     }
@@ -27,15 +27,15 @@ $(document).ready(function () {
                         '                    <td class="mathInput"><span class="math-field"></span></td>\n' +
                         '                    <td style="background-color: #aaa"><p class="status"></p></td>\n' +
                         '                </tr>');
-                        allMathFields = updateMathFields()
+                        allMathFields = updateMathFields();
                         nextField = allMathFields[i + 1];
                     }
-                    console.log({nextField, currentField, mathFields})
+                    console.log({nextField, currentField, mathFields});
                     if (!nextField) {
                         console.error("Couldn't add newRow");
                         return;
                     }
-                    console.log({nextField})
+                    console.log({nextField});
                     nextField.focus();
 
                     const lines = mathFields.map(field => field.latex());
@@ -58,13 +58,13 @@ $(document).ready(function () {
                             dataType: 'json',
                             data: {
                                 txt: txt
-                            }, //your data: {key1:value1, key2:value2}
+                            },
                             success: function (data) { //handle a successfull response (200 OK)
                                 console.log(data.result);
                                 const row = $(`#math_table tr`)[i + 2];
                                 console.log({row: $(row)});
                                 const resCell = $(row).find("p");
-                                console.log({resCell})
+                                console.log({resCell});
                                 if (data.result == "A-OK") {
                                     console.log("OK");
                                     if (resCell) {
@@ -95,7 +95,7 @@ $(document).ready(function () {
             });
             mathFields.push(mathField)
         }
-        console.log("RETURNING", {mathFields})
+        console.log("RETURNING", {mathFields});
         return mathFields;
     }
 

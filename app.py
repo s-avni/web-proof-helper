@@ -23,8 +23,11 @@ def send_js(path):
 
 @app.route("/validate", methods=['GET', 'POST'])
 def api_info():
+    print("hello!!")
     txt = request.form['txt'].replace("\left", "").replace("\\right", "")
-    print(txt)
+    # is_over_reals = request.form['over_reals'] #todo
+    # print(is_over_reals)
+    # print(type(is_over_reals))
     is_ok = validate_new_line(txt)
     if is_ok == True:
         return jsonify(result="A-OK")
