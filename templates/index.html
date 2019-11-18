@@ -1,172 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Automated Dimensional Analysis</title>
     <meta name="description" content="An automated online dimensional analysis tool. Plug in your variable names and dimensions, and get a
 dimensionless combination or your desired dimension.">
-    <meta name="google-site-verification" content="1gFvXxXV2zBOZbDroc71gDxg3oD1lmnj-eOWbC-2JBw"/>
+    <meta name="google-site-verification" content="1gFvXxXV2zBOZbDroc71gDxg3oD1lmnj-eOWbC-2JBw" />
     <meta name="keywords" content="Dimensional Analysis, Physics, Automation, Online, Pendulum">
     <meta name="author" content="Shiri Avni">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="../static/sticky-footer.css" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <link rel="stylesheet" href="/static/mathquill-0.10.1/mathquill.css" />
+    <script src="/static/mathquill-0.10.1/mathquill.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
 
-    <style>
-        li {
-            margin: 10px 0;
-        }
-
-        #math_table {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        #math_table td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #math_table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        #math_table tr:hover {
-            background-color: #ddd;
-        }
-
-        #math_table th {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            text-align: left;
-        }
-    </style>
 </head>
+
 <body>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1>Your Personal Proof Assistant<sup><i class="text-primary" style="font-size:large"><b> made with <a
-                href="https://simpy.readthedocs.io/en/latest/" target="_blank">Simpy</a></b></i></sup></h1>
-        <blockquote>
-            If IDEs can help coders with their coding errors, why isn't there a handy program to help mathematicians
-            with
-            their calculations?<br/>
-            <cite>- A forelorn mathematician</cite>
-        </blockquote>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Your Personal Proof Assistant<sup><i class="text-primary" style="font-size:large"><b> made with <a
+                                rel="noopener noreferrer" href="https://simpy.readthedocs.io/en/latest/"
+                                target="_blank">Simpy</a></b></i></sup>
+            </h1>
+            <blockquote>
+                If IDEs can help coders with their coding errors, why isn't there a handy program to help mathematicians
+                with
+                their calculations?<br />
+                <cite>- A forelorn mathematician</cite>
+            </blockquote>
 
-        <br/>
-        <br/>
-        <h5>Input examples, press "enter" for each row simiplification: </h5>
-        <h6>
-            <ol>
-                <li>x^2 - 4 <br/>(x+2)(x-2)</li>
-                <li>x^2+3x+2=12<br/> (x+1)(x+2)=12</li>
-                <li>x*y+z-12=2z<br/>x*y-12=z</li>
-            </ol>
-        </h6>
-    </div>
-</div>
-
-<div class="container text-center">
-    <h5>Enter your input, simplifying line by line:</h5>
-    <div class="row">
-        <!--4*x^2-4=0 &#13;&#10; 2*x^2-2=0 &#13;&#10; x=1-->
-        <div class="col col-md-1 offset-md-1 text-right">
-            <br/>
-            <p id="check_1"></p>
-        </div>
-        <div class="col col-md-8">
-            <!--        <textarea style="height:100%; min-width: 100%" id="math-text" rows="20">4*x^2-4 &#13;&#10;x^2-1</textarea>-->
-            <table id="math_table" style="width:100%">
-                <colgroup>
-                    <col span="1" style="width: 80%;">
-                    <col span="1" style="width: 20%;">
-                </colgroup>
-                <thead>
-                <th>Expression</th>
-                <th>Validity</th>
-                </thead>
-                <tbody>
-                <tr>
-                    <td contenteditable="true"></td>
-                    <td style="background-color: #aaa"></td>
-                </tr>
-                </tbody>
-            </table>
+            <br />
+            <br />
+            <h5>Input examples, press "enter" for each row simiplification: </h5>
+            <h6>
+                <ol>
+                    <li>x^2 - 4 <br />(x+2)(x-2)</li>
+                    <li>x^2+3x+2=12<br /> (x+1)(x+2)=12</li>
+                    <li>x*y+z-12=2z<br />x*y-12=z</li>
+                </ol>
+            </h6>
         </div>
     </div>
-</div>
 
-<br/>
-<br/>
-
-<!--https://stackoverflow.com/questions/6524288/jquery-event-for-user-pressing-enter-in-a-textbox-->
-<!-- only send last two rows each time -->
-<script>
-    $(document).ready(function () {
-        $('textarea').bind("enterKey", function (e) {
-            const lines = $('#math-text').val().split("\n");
-            const lines2 = lines.filter(function (entry) {
-                return entry.trim() != '';
-            });
-            console.log(lines2);
-            const desired_lines = lines2.slice(-2);
-            const txt = desired_lines.join('\n');
-            console.log(txt);
-            $.ajax({
-                    url: '/validate',
-                    type: 'post', //the method to use. GET or POST
-                    dataType: 'json',
-                    data: {txt: txt}, //your data: {key1:value1, key2:value2}
-                    success: function (data) { //handle a successfull response (200 OK)
-                        console.log(data.result);
-                        if (data.result == "A-OK") {
-                            $('#check_1').text('OK!');
-                            console.log();
-                        } else {
-                            $('#check_1').text('Mistake!');
-                        }
-                        const val = $('#check_1').val();
-                        console.log(val);
-                        console.log("hey")
-
-                        //here you can do with your data whatever you want
-                    },
-                    error: function (jqXHR, textStauts, errorThrown) { //handle every error. e.g. 500
-                        console.log(textStatus + ': ' + errorThrown);
-                    }
-                }
-            );
-        });
-
-        $('#math_table').keyup(function (e) {
-            if (e.keyCode == 13) {
-                $('#math_table tr:last').after('<tr>\n' +
-                    '                    <td contenteditable="true"></td>\n' +
-                    '                    <td style="background-color: #aaa"></td>\n' +
-                    '                </tr>');
-                $('#math_table tr:last').focus();
-                var count = $('#math_table').length;
-                console.log(count);
-                $(this).trigger("enterKey");
-            }
-        });
-    })
-    ;
-</script>
-
-
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted text-center" style="font-size: 14px">For questions or comments, please email
-            avni.shiri@gmail.com.</p>
+    <div class="container text-center">
+        <h5>Enter your input, simplifying line by line:</h5>
+        <div class="row">
+            <!--4*x^2-4=0 &#13;&#10; 2*x^2-2=0 &#13;&#10; x=1-->
+            <!-- <div class="col col-md-1 offset-md-1 text-right">
+                <br />
+                <p id="check_1"></p>
+            </div> -->
+            <div class="col col-md-8">
+                <!--        <textarea style="height:100%; min-width: 100%" id="math-text" rows="20">4*x^2-4 &#13;&#10;x^2-1</textarea>-->
+                <table id="math_table" style="width:100%">
+                    <colgroup>
+                        <col span="1" style="width: 80%;">
+                        <col span="1" style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <th>Expression</th>
+                        <th>Validity</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="mathInput">
+                                <span class="math-field"></span>
+                                <!-- <input type="text" /> -->
+                            </td>
+                            <td style="background-color: #aaa">
+                                <p class="status"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</footer>
+
+    <br />
+    <br />
+
+    <!--https://stackoverflow.com/questions/6524288/jquery-event-for-user-pressing-enter-in-a-textbox-->
+    <!-- only send last two rows each time -->
+    <script src="/static/index.js"></script>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center" style="font-size: 14px">For questions or comments, please email
+                avni.shiri@gmail.com.</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>
