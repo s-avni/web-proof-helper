@@ -1,0 +1,43 @@
+solve(f, *symbols, **flags)
+
+-poly
+-transcendental
+-piecewise combos of above
+-sys of linear and poly eq (do we want?)
+
+f = Expr/Poly (=0), Equality, Relational expr, Boolean
+
+1. allow complex numbers or not // symbol('t', real=True)
+
+
+1b. e.g. t=Symbol('t', positive=True, integer=True, commutative=True)
+sqrt(t**2) // = t
+otherwise, no sol.
+
+2. allow limits or not (e.g. solve sin(x)/x=1)
+
+Sum(f(n), (n, 0, m))
+
+3. Switch to solveset - which provides domains
+e.g. sin(x)=0 has infinitely many solutions otherwise
+ _or_ just let us reduce the numb of sols?
+
+//solveset can return infinitely many solutions. For example solving for sin(x)=0 returns {2nπ|n∈Z}∪{2nπ+π|n∈Z}, whereas solve only returns [0,π].
+
+solveset(equation, variable=None, domain=S.Complexes)
+
+Solving for complex solutions of inequalities, like x^2<0 is not yet supported.
+
+If the function is trigonometric or hyperbolic, the function _solve_real_trig is called, which solves it by converting it to complex exponential form.
+
+The underlying method _solve_as_poly solves the equation using polynomial techniques if it’s already a polynomial equation or, with a change of variables, can be made so.
+
+TO CHECK/CHANGE:
+
+1. sol for: x= sqrt(-1)*sqrt(-1) //over reals, i expect we wouldn't get a sol. but maybe we do?
+(b/c in the end x=1? perhaps need to add condintion on real for x)
+
+2. 2x and 3x are shown to be equal, because both have 0 as a solution --> change to 2x-3x==0 //but then won't allow cancelation...
+
+
+
