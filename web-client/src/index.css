@@ -1,0 +1,33 @@
+.text-primary {
+  font-size: large;
+}
+
+li {
+  margin: 10px 0;
+}
+
+#math_table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#math_table td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#math_table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#math_table tr:hover {
+  background-color: #ddd;
+}
+
+#math_table th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
