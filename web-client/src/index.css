@@ -31,3 +31,48 @@ li {
   padding-bottom: 5px;
   text-align: left;
 }
+
+.complex.btn-primary,
+.complex.btn-primary:not(.active) {
+  background-color: #28a745;
+}
+
+.complex.btn-primary:not(.disabled):not(:disabled):hover,
+.complex.btn-primary:not(.disabled):not(:disabled):active,
+.complex.btn-primary:not(.disabled):not(:disabled):focus,
+.complex.btn-primary:not(.disabled):not(:disabled).active {
+  background-color: #218838;
+}
+
+#domain-toggle {
+  grid-auto-flow: column;
+  display: grid;
+}
+
+#domain-toggle.btn-group.btn-group-toggle>.btn-primary {
+  width: 7em;
+  transition: width 0.25s linear;
+  /* transition: padding-left 0.5s linear;
+  transition: padding-right 0.5s linear; */
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+#domain-toggle.btn-group.btn-group-toggle>.btn-primary:not(.active) {
+  width: 0;
+  /* padding-left: 0;
+  padding-right: 0; */
+}
+
+.toggle-handle {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 100%;
+  width: 0;
+  border-width: 1px;
+  border-color: black;
+  background-color: #fff;
+}
