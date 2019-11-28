@@ -44,7 +44,41 @@ const App: React.FC = () => {
             </ToggleButtonGroup>
           </Col>
         </Row>
+        <h5>Enter your input, simplifying line by line:</h5>
+        <Row>
+          <Col md={{ offset: 2, span: 8 }}>
+            <table id="math_table" style={{ width: "100%" }}>
+              <colgroup>
+                <col span={1} style={{ width: "80%" }} />
+                <col span={1} style={{ width: "20%" }} />
+              </colgroup>
+              <thead>
+                <th>Expression</th>
+                <th>Validity</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="mathInput">
+                    <span className="math-field"></span>
+                    {/* <!-- <input type="text" /> --> */}
+                  </td>
+                  <td style={{ backgroundColor: "#aaa" }}>
+                    <p className="status"></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Col>
+        </Row>
       </Container>
+      <br />
+      <br />
+      <footer className="footer">
+        <div className="container">
+          <p className="text-muted text-center" style={{ fontSize: "14px" }}>For questions or comments, please email
+                avni.shiri@gmail.com.</p>
+        </div>
+      </footer>
     </>
   );
 }
