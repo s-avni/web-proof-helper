@@ -37,6 +37,7 @@ li {
   background-color: #28a745;
 }
 
+#domain-toggle.selected-complex,
 .complex.btn-primary:not(.disabled):not(:disabled):hover,
 .complex.btn-primary:not(.disabled):not(:disabled):active,
 .complex.btn-primary:not(.disabled):not(:disabled):focus,
@@ -44,9 +45,16 @@ li {
   background-color: #218838;
 }
 
+#domain-toggle.selected-reals {
+  background-color: #0062cc;
+}
+
 #domain-toggle {
   grid-auto-flow: column;
   display: grid;
+  width: max-content;
+  border-radius: 6px;
+  padding: 1px;
 }
 
 #domain-toggle.btn-group.btn-group-toggle>.btn-primary {
@@ -56,7 +64,8 @@ li {
   transition: padding-right 0.5s linear; */
   min-width: 0;
   overflow: hidden;
-  padding: 0;
+  padding: 0.3em 0;
+  border: none;
 }
 
 #domain-toggle.btn-group.btn-group-toggle>.btn-primary:not(.active) {
@@ -65,14 +74,17 @@ li {
   padding-right: 0; */
 }
 
-.toggle-handle {
+.btn.toggle-handle {
   position: relative;
   margin: 0 auto;
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
   height: 100%;
-  width: 0;
+  width: 0.5em;
   border-width: 1px;
   border-color: black;
   background-color: #fff;
+  border-radius: 5px !important;
 }
