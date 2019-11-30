@@ -1,0 +1,56 @@
+.complex:global(.btn-primary),
+.complex:global(.btn-primary:not(.active)) {
+    background-color: #28a745;
+}
+
+#domain-toggle.selected-complex,
+.complex:global(.btn-primary:not(.disabled):not(:disabled)):hover,
+.complex:global(.btn-primary:not(.disabled):not(:disabled)):active,
+.complex:global(.btn-primary:not(.disabled):not(:disabled)):focus,
+.complex:global(.btn-primary:not(.disabled):not(:disabled)).active {
+    background-color: #218838;
+}
+
+#domain-toggle.selected-reals {
+    background-color: #0062cc;
+}
+
+#domain-toggle {
+    grid-auto-flow: column;
+    display: grid;
+    width: max-content;
+    border-radius: 6px;
+    padding: 1px;
+}
+
+#domain-toggle:global(.btn-group.btn-group-toggle)>:global(.btn-primary) {
+    width: 7em;
+    transition: width 0.25s linear;
+    /* transition: padding-left 0.5s linear;
+  transition: padding-right 0.5s linear; */
+    min-width: 0;
+    overflow: hidden;
+    padding: 0.3em 0;
+    border: none;
+}
+
+#domain-toggle:global(.btn-group.btn-group-toggle)>:global(.btn-primary:not(.active)) {
+    width: 0;
+    /* padding-left: 0;
+  padding-right: 0; */
+}
+
+:global(.btn).toggle-handle {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    height: 100%;
+    width: 0.5em;
+    border-width: 1px;
+    border-color: black;
+    background-color: #fff;
+    border-radius: 5px !important;
+}
