@@ -1,7 +1,9 @@
 import React from "react";
 
+import classNames from "./styles.module.scss";
+
 export const MathTable = () => {
-    return <table id="math_table" style={{ width: "100%" }}>
+    return <table className={classNames.MathTable}>
         <colgroup>
             <col span={1} style={{ width: "80%" }} />
             <col span={1} style={{ width: "20%" }} />

@@ -1,0 +1,24 @@
+.MathTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.MathTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.MathTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.MathTable tr:hover {
+    background-color: #ddd;
+}
+
+.MathTable th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+}
