@@ -2,7 +2,7 @@
   "name": "web-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:5000",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@types/jest": "24.0.23",
     "@types/node": "12.12.8",
