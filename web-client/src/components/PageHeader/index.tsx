@@ -8,13 +8,7 @@ export const PageHeader = () => <Jumbotron fluid={true}>
                 rel="noopener noreferrer" href="https://simpy.readthedocs.io/en/latest/"
                 target="_blank">Simpy</a></b></i></sup>
         </h1>
-        <blockquote>
-            If IDEs can help coders with their coding errors, why isn't there a handy program to help mathematicians
-            with
-                their calculations?<br />
-            <cite>- A forelorn mathematician</cite>
-        </blockquote>
-        {/* TODO: Replace with styles */}
+        {/* TODO: Replace with css */}
         <br />
         <br />
         <h5>Input examples, press "enter" for each row simplification: </h5>
