@@ -2,18 +2,23 @@
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+
+    .mathInput {
+        &.empty:not(:focus-within) * {
+            opacity: 0;
+        }
+    }
 }
 
 .MathTable td {
     border: 1px solid #ddd;
-    padding: 8px;
 }
 
 .MathTable tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.MathTable tr:hover {
+.MathTable tr textarea:hover {
     background-color: #ddd;
 }
 

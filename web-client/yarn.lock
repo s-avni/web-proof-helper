@@ -6278,6 +6278,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+"mathlive@>= 0.32.3 < 1":
+  version "0.32.8"
+  resolved "https://registry.yarnpkg.com/mathlive/-/mathlive-0.32.8.tgz#ee447ea68d4ec974dd2a38b82b5357d159f1a9cd"
+  integrity sha512-wjaixR8ExryFm74RkxinnEE94t0E1r8IwFR+0mik/AYAnCzVEXCb/2ZpP1FSfJnXz9FDfpDh/SosDtbo2Ed9MA==
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -8388,7 +8393,7 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@^16.12.0:
+react-dom@^16.12.0, react-dom@^16.7.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -8417,6 +8422,15 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-mathlive@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-mathlive/-/react-mathlive-2.0.0.tgz#9bdc0746671d04e7135d90c403ab7bf4db5ce8a1"
+  integrity sha512-ftkXf4I3uiNIidkc27EcpqEw6TteexlY4GGiNwGknT4zxVMu7+epL/r6pkFpmNOTE23pdIW9l1dqWN/6aLh9qQ==
+  dependencies:
+    mathlive ">= 0.32.3 < 1"
+    react "^16.7.0"
+    react-dom "^16.7.0"
 
 react-overlays@^2.1.0:
   version "2.1.0"
@@ -8502,7 +8516,7 @@ react-transition-group@^4.0.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^16.12.0:
+react@^16.12.0, react@^16.7.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
