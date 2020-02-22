@@ -1,8 +1,8 @@
 import React from "react";
-import { MathFieldComponent } from 'react-mathlive';
 
 import classNames from "./styles.module.scss";
 import { getLineTests } from "./helpers";
+import { MathField } from "./MathField";
 
 export interface MathTableProps {
     isOverReals: boolean;
@@ -13,6 +13,13 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
 }) => {
     // Store the textual data that will be sent to the server upon validation
     const [mathInputs, setMathInputs] = React.useState<string[]>([""])
+
+    const onChangeForField = (fieldIdx: number) => (newLatex: string) => {
+        const newMathInputs = [...mathInputs];
+        newMathInputs[fieldIdx] = newLatex;
+        setMathInputs(newMathInputs);
+    };
+
     // Store the line-by-line answers from the server after running validation
     const [testResults, setTestResults] = React.useState<string[]>([""])
 
@@ -20,6 +27,7 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
     // Read about React DOM references here: https://reactjs.org/docs/refs-and-the-dom.html
     // Here is the functionality this gives us: https://docs.mathlive.io/MathField.html
     const mathRefs = React.useRef<any[]>([]);
+    const updateMathRef = (fieldIdx: number) => (ref: any) => mathRefs.current[fieldIdx] = ref
 
     // Store a reference to keep track of the latest mathlive input field
     const lastFieldLength = React.useRef(1);
@@ -40,6 +48,7 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
             }
         }
     })
+
     return <table className={classNames.MathTable}>
         <colgroup>
             <col span={1} style={{ width: "80%" }} />
@@ -74,6 +83,8 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
                                 }
                                 // Enter key
                                 if (e.keyCode === 13) {
+                                    // If this is the last line, add a new one with empty input
+                                    // TODO: recognize QED as an ending statement
                                     if (idx === mathInputs.length - 1) {
                                         setMathInputs([
                                             ...mathInputs,
@@ -90,18 +101,10 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
                                 }
                             })
                         }>
-                        <MathFieldComponent
-                            mathFieldRef={ref => mathRefs.current[idx] = ref}
-                            latex={latex}
-                            onChange={(newLatex: string) => {
-                                const newMathInputs = [...mathInputs];
-                                newMathInputs[idx] = newLatex;
-                                setMathInputs(newMathInputs);
-                            }}
-                            // https://docs.mathlive.io/tutorial-CONFIG.html
-                            mathFieldConfig={{
-                                virtualKeyboardMode: "manual"
-                            }}
+                        <MathField
+                            latexInput={latex}
+                            getMathliveRef={updateMathRef(idx)}
+                            onChange={onChangeForField(idx)}
                         />
                     </td>
                     <td style={{ backgroundColor: "#aaa" }}>
