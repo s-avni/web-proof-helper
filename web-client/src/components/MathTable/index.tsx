@@ -11,10 +11,20 @@ export interface MathTableProps {
 export const MathTable: React.FunctionComponent<MathTableProps> = ({
     isOverReals
 }) => {
-    const lastFieldLength = React.useRef(1);
+    // Store the textual data that will be sent to the server upon validation
     const [mathInputs, setMathInputs] = React.useState<string[]>([""])
+    // Store the line-by-line answers from the server after running validation
     const [testResults, setTestResults] = React.useState<string[]>([""])
+
+    // Store references to the DOM elements of the math inputs, required to use some of mathlive's APIs (i.e. getting the latex data)
+    // Read about React DOM references here: https://reactjs.org/docs/refs-and-the-dom.html
+    // Here is the functionality this gives us: https://docs.mathlive.io/MathField.html
     const mathRefs = React.useRef<any[]>([]);
+
+    // Store a reference to keep track of the latest mathlive input field
+    const lastFieldLength = React.useRef(1);
+
+    // Update references to math inputs when a new one is added
     React.useEffect(() => {
         if (lastFieldLength.current < mathInputs.length) {
             lastFieldLength.current = mathInputs.length;
@@ -80,7 +90,6 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
                                 }
                             })
                         }>
-                        {/* // @ts-ignore */}
                         <MathFieldComponent
                             mathFieldRef={ref => mathRefs.current[idx] = ref}
                             latex={latex}
@@ -89,8 +98,11 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
                                 newMathInputs[idx] = newLatex;
                                 setMathInputs(newMathInputs);
                             }}
+                            // https://docs.mathlive.io/tutorial-CONFIG.html
+                            mathFieldConfig={{
+                                virtualKeyboardMode: "manual"
+                            }}
                         />
-                        {/* <!-- <input type="text" /> --> */}
                     </td>
                     <td style={{ backgroundColor: "#aaa" }}>
                         <p className="status">{idx - 1 >= 0 && testResults.length > idx - 1 ? testResults[idx - 1] : ""}</p>

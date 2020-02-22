@@ -2,12 +2,6 @@
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-
-    .mathInput {
-        &.empty:not(:focus-within) * {
-            opacity: 0;
-        }
-    }
 }
 
 .MathTable td {
