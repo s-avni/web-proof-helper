@@ -24,6 +24,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Todo
 
+0. [Shiri] add transformations to parse_latex (just like in parse_expr) //to the sympy library
+0b. [Shiri] add ascii checking on backend as well
 1. Change default from complex to reals
 2. Change imaginary number from "I" to "i" #perhaps add a 'j' option as well
 3. Make parser work with sin(x)/x=1, and then check if x=0 is a solution or not

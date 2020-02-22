@@ -33,4 +33,10 @@ If the function is trigonometric or hyperbolic, the function _solve_real_trig is
 The underlying method _solve_as_poly solves the equation using polynomial techniques if it’s already a polynomial equation or, with a change of variables, can be made so.
 
 
+# Sympy Roadmap
+https://www.sympy.org/en/roadmap.html
+https://github.com/sympy/sympy/wiki/GSoC-2017-Ideas
+
+# Mathlive Issues
+https://github.com/arnog/mathlive/labels/good%20first%20issue
 

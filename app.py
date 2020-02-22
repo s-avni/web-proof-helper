@@ -1,7 +1,6 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify, Response
 import logging
-from validation import validate_new_line
-import re
+from verification.validation import validate_new_line
 
 logging.basicConfig(level=logging.DEBUG)
 
