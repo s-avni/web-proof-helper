@@ -29,7 +29,7 @@ export const MathField: React.FunctionComponent<MathFieldProps> = ({
                 onVirtualKeyboardToggle: (mathField: MathLiveInput, isVisible: boolean) => {
                     setIsVitualKeyboardVisible(isVisible);
                     if (isVisible) {
-                        mathField.$insert(latexInput || " ", {
+                        mathField.$insert("", {
                             focus: true,
                             mode: "math",
                             replaceAll: true
