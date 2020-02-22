@@ -3,35 +3,48 @@ export interface GetLineTestsOptions {
 }
 export const getLineTests = async (lines: string[], {
     isOverReals = true
-} = {}) => {
+} = {}): Promise<string[]> => {
     const results: string[] = [];
+    // We need at least two lines to run valiadtions of equivalency
     if (lines.length <= 1) {
         return results;
     }
-    for (let i = 0; i < lines.length - 1; i += 1) {
-        const desired_lines = lines.slice(i, i + 2).filter((entry) => entry.trim() !== '');
-        console.log({ desired_lines });
-        if (desired_lines.length !== 2) {
+    let baseLine = lines[0]
+    for (let i = 1; i < lines.length; i += 1) {
+        // Get the next line to check for equivalency
+        const nextLine = lines[i].trim();
+        if (!nextLine) {
+            // Skip empty line
+            results.push("")
             continue;
         }
-        const step = desired_lines.join('\n');
+        const linesToCompare = [baseLine, nextLine];
+        console.log({ linesToCompare });
+        // Format the step to check for the server
+        const step = linesToCompare.join('\n');
         console.log({ step });
         try {
+            // The server expects to get the data in form format
             const formData = new FormData();
             formData.append('txt', step);
             formData.append("over_reals", isOverReals ? "true" : "false");
 
+            // Get the response from the server
             const res = await fetch('/validate', {
-                method: 'POST', //the method to use. GET or POST
+                method: 'POST',
                 body: formData
             });
 
+            // Parse the response frmo the server
             const resJson = await res.json();
             results.push((resJson && resJson.result) || "");
         } catch (err) {
+            // Display errors
             console.error(err);
             results.push(`${err}`);
         }
+        // Use the next line as a baseline for the next equivalency comparison
+        baseLine = nextLine;
     }
     console.log({ results });
     return results;
