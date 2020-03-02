@@ -24,8 +24,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Todo
 
-0. [Shiri] add transformations to parse_latex (just like in parse_expr) //to the sympy library
-0b. [Shiri] add ascii checking on backend as well
+0. log_2(4) !=2 fix (works with log_10(100)==2)
+
+0. [Moshe] frontend - make sure only ascii (not hebrew, etc)
+0b. [Moshe] remove some of the options in the virtual keyboard, such as gcd()...makes abs() work -- not a latex command, but being passed as such
 1. Change default from complex to reals
 2. Change imaginary number from "I" to "i" #perhaps add a 'j' option as well
 3. Make parser work with sin(x)/x=1, and then check if x=0 is a solution or not
@@ -33,9 +35,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 5. enable custom error messages to help user. e.g. "your first line has a larger value than your second line".
 6. when toggling "real/complex", re-solve equations and provide new correctness feedback
 7. finish real/complex toggle:
-
-const is_over_reals = $('#domain-toggle').is(":checked");
-console.log({is_over_reals});
 
 
 

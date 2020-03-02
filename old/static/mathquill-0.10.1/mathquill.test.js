@@ -2563,7 +2563,7 @@ var MathCommand = P(MathElement, function(_, super_) {
     // Expects .createBlocks() to have been called already, since it uses the
     // .blocks array of child blocks.
     //
-    // See html.test.js for example templates and intended outputs.
+    // See html.test.js for example old and intended outputs.
     //
     // Given an .htmlTemplate as described above,
     // - insert the mathquill-command-id attribute into all top-level tags,
@@ -5681,7 +5681,7 @@ suite('HTML', function() {
     return MathCommand.prototype.html.call(cmd);
   }
 
-  test('simple HTML templates', function() {
+  test('simple HTML old', function() {
     var htmlTemplate = '<span>A Symbol</span>';
     var html = '<span mathquill-command-id=1>A Symbol</span>';
 
@@ -5708,7 +5708,7 @@ suite('HTML', function() {
     assert.equal(html, renderHtml(2, htmlTemplate), 'container span with two block spans');
   });
 
-  test('context-free HTML templates', function() {
+  test('context-free HTML old', function() {
     var htmlTemplate = '<br/>';
     var html = '<br mathquill-command-id=1/>';
 

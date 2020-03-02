@@ -1,0 +1,2 @@
+#http://mirror.las.iastate.edu/tex-archive/macros/latex/contrib/mleftright/mleftright.pdf
+\\sin \\mleft(2x\\mright) #pretty formatting of sin(2x)

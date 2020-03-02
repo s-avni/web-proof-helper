@@ -1,6 +1,6 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify, Response
 import logging
-from verification.validation import validate_new_line
+from backend.validation import validate_new_line
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -22,7 +22,6 @@ def send_js(path):
 
 @app.route("/validate", methods=['GET', 'POST'])
 def api_info():
-    print("hello!!")
     txt = request.form['txt'].replace("\left", "").replace("\\right", "")
     # is_over_reals = request.form['over_reals'] #todo
     # print(is_over_reals)
