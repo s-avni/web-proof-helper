@@ -7,6 +7,10 @@ A website designed to help users make correct proofs, and catch mistakes in real
 Install the packages appearing in requirements.txt.
 Run the project using `flask run`.
 
+Run tests from the root folder:
+# Activate virtual environment and install dependencies, then:
+PYTHONPATH=./ python3 ./backend/tests/test_validation.py 
+
 ## Resources
 
 * [SymPy: symbolic computing in Python](https://peerj.com/articles/cs-103/) (2017) - gives a clear overview of SymPy's capabilities.

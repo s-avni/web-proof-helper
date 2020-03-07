@@ -1,5 +1,1 @@
-.idea/
-__pycache__/
-venv/
-activate
-.vscode
+*.pyc

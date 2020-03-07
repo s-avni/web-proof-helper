@@ -18,10 +18,17 @@ def replace_question_mark_by_parentheses(s):
     return s.replace("?", ")")
 
 
-#todo: this only replaces 1 occurence. so it fails if we do: log _39 * log _39
-def fix_logarithm(s): #want \\log _39 to become \\log _{3}9
-    s = re.sub('(.*log _)([1-9])(\d+.*)', '\\1{\\2}\\3', s)
-    return s
+# todo: this only replaces 1 occurence. so it fails if we do: log _39 * log _39
+def fix_logarithm(s):  # want \\log _39 to become \\log _{3}9
+    last_s = s
+    regex_for_fix = r'(.*log _)([1-9])(\d+.*)'
+    curr_s = re.sub(regex_for_fix, '\\1{\\2}\\3', s)
+    while curr_s != last_s:
+        last_s = curr_s
+        curr_s = re.sub(regex_for_fix, '\\1{\\2}\\3', curr_s)
+    if ("log" in curr_s):
+        print("original log:", s, " - fixed log:", curr_s)
+    return curr_s
 
 
 def simplify_latex(s):
@@ -72,7 +79,8 @@ def are_equivalent(row1, row2):
             return solve(expr1) == solve(expr2)
         if not expr1.is_Relational and not expr2.is_Relational:  # e.g. 2x-4, x-2
             # https://docs.sympy.org/latest/tutorial/basic_operations.html
-            are_equivalent_val_to_compare = simplify(expand(expr1) - expand(expr2))
+            are_equivalent_val_to_compare = simplify(
+                expand(expr1) - expand(expr2))
             are_equivalent_res = are_equivalent_val_to_compare == 0
             print("are_equivalent_res", are_equivalent_res)
             return are_equivalent_res
