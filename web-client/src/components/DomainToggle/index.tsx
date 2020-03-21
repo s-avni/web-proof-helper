@@ -1,6 +1,6 @@
 import React from "react";
-import {ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
-import {domain} from "../../types";
+import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { domain } from "../../types";
 
 import cssNames from "./styles.module.scss";
 
@@ -10,22 +10,21 @@ export interface DomainToggleProps {
 }
 
 export const DomainToggle: React.FunctionComponent<DomainToggleProps> = ({
-                                                                             setDomain,
-                                                                             domain
-                                                                         }) => {
+    setDomain,
+    domain
+}) => {
     const toggleDomain = () => {
         setDomain(domain === "reals" ? "complex" : "reals")
     };
 
-    console.log({cssNames});
     return <ToggleButtonGroup name="domain" id={cssNames["domain-toggle"]}
-                              className={domain === "complex" ? cssNames["selected-complex"] : cssNames["selected-reals"]}
-                              type="radio" value={domain}>
+        className={domain === "complex" ? cssNames["selected-complex"] : cssNames["selected-reals"]}
+        type="radio" value={domain}>
         <ToggleButton className={cssNames.reals} value="reals" type="radio"
-                      onClick={() => setDomain("complex")}>Reals</ToggleButton>
+            onClick={() => setDomain("complex")}>Reals</ToggleButton>
         <div className={`${cssNames["toggle-handle"]} btn btn-light`}
-             onClick={toggleDomain}/>
+            onClick={toggleDomain} />
         <ToggleButton className={cssNames.complex} value="complex" type="radio"
-                      onClick={() => setDomain("reals")}>Complex</ToggleButton>
+            onClick={() => setDomain("reals")}>Complex</ToggleButton>
     </ToggleButtonGroup>;
 }

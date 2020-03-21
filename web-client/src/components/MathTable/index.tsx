@@ -6,10 +6,12 @@ import { MathField } from "./MathField";
 
 export interface MathTableProps {
     isOverReals: boolean;
+    readOnBlur?: boolean;
 }
 
 export const MathTable: React.FunctionComponent<MathTableProps> = ({
-    isOverReals
+    isOverReals,
+    readOnBlur
 }) => {
     // Store the textual data that will be sent to the server upon validation
     const [mathInputs, setMathInputs] = React.useState<string[]>([""])
@@ -83,6 +85,10 @@ export const MathTable: React.FunctionComponent<MathTableProps> = ({
                                 }
                                 // Enter key
                                 if (e.keyCode === 13) {
+                                    if (readOnBlur && mathRefs.current[idx]) {
+                                        console.log("Reading!");
+                                        mathRefs.current[idx].speak_("all");
+                                    }
                                     // If this is the last line, add a new one with empty input
                                     // TODO: recognize QED as an ending statement
                                     if (idx === mathInputs.length - 1) {
