@@ -1,7 +1,7 @@
 antlr4-python3-runtime==4.7.1
 astroid==2.3.3
 Click==7.0
-Flask==1.1.1
+Flask==2.3.2
 isort==4.3.21
 itsdangerous==1.1.0
 Jinja2==2.11.1
